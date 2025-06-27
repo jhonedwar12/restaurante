@@ -24,12 +24,13 @@ const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [selectedBarrio, setSelectedBarrio] = useState("");
   const [domicilio, setDomicilio] = useState(0);
+  const [direccion, setDireccion] = useState("");
   const { toast } = useToast();
   const { products, categories, loading } = useProducts();
   const { domis } = useDomis();
 
-  const filteredProducts = selectedCategory === "Todos" 
-    ? products 
+  const filteredProducts = selectedCategory === "Todos"
+    ? products
     : products.filter(product => product.category === selectedCategory);
 
   const addToCart = (product: Product, size?: string) => {
@@ -76,7 +77,7 @@ const Index = () => {
 
   const removeFromCart = (id: number) => {
     setCart(prevCart => prevCart.filter(item => item.id !== id));
-    
+
     toast({
       title: "Producto eliminado",
       description: "El producto se eliminó de tu carrito",
@@ -105,15 +106,19 @@ const Index = () => {
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     const total = subtotal + domicilio;
 
-    let message = "¡Hola! 🍽️ Me gustaría hacer el siguiente pedido:\n\n";
+    let message = "  🖐️ ¡Hola! Me gustaría hacer el siguiente pedido:\n\n";
     cart.forEach(item => {
-      message += `• ${item.name} x${item.quantity} - $${(item.price * item.quantity).toLocaleString()}\n`;
+      message += `  🍗 ${item.name} x${item.quantity} - 💵 $${(item.price * item.quantity).toLocaleString()}\n`;
     });
-    message += `\n🏠 *Barrio: ${selectedBarrio}*`;
-    message += `\n💰 *Subtotal: $${subtotal.toLocaleString()}*`;
-    message += `\n🚚 *Domicilio: $${domicilio.toLocaleString()}*`;
-    message += `\n💳 *Total: $${total.toLocaleString()}*\n\n`;
-    message += "¡Gracias! 😊";
+
+    message += `\n  📍 *Barrio:* ${selectedBarrio}`;
+    message += `\n  🏡 *Dirección:* ${direccion}`;
+    message += `\n  🧾 *Subtotal:* $${subtotal.toLocaleString()}`;
+    message += `\n  🛵 *Domicilio:* $${domicilio.toLocaleString()}`;
+    message += `\n  💲 *Total:* $${total.toLocaleString()}\n`;
+    message += "¡Muchas gracias! 😁 \n\n";
+    message += "¡Recuerda, puedes pagar cuando te llegue en *efectivo* o transferir el total al siguiente Nequi : 3022685964! ";
+
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/573136752878?text=${encodedMessage}`;
@@ -135,7 +140,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50">
-      <Header 
+      <Header
         cart={cart}
         updateQuantity={updateQuantity}
         removeFromCart={removeFromCart}
@@ -145,10 +150,12 @@ const Index = () => {
         setSelectedBarrio={setSelectedBarrio}
         setDomicilio={setDomicilio}
         domis={domis}
+        direccion={direccion}
+        setDireccion={setDireccion}
       />
 
       {/* Hero Section */}
-      <section 
+      <section
         className="relative py-20 px-4 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `linear-gradient(rgba(255, 107, 53, 0.8), rgba(247, 147, 30, 0.8)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`
@@ -198,6 +205,24 @@ const Index = () => {
         </div>
       </section>
 
+
+      {/* Dirección de entrega */}
+      {selectedBarrio !== "Recoger en el restaurante" && (
+        <div className="flex flex-col items-center my-4">
+          <label htmlFor="direccion" className="mb-2 font-semibold">Dirección de entrega:</label>
+          <input
+            id="direccion"
+            type="text"
+            value={direccion}
+            onChange={e => setDireccion(e.target.value)}
+            className="border rounded px-3 py-2 w-80"
+            placeholder="Escribe tu dirección aquí"
+            required
+          />
+        </div>
+      )}
+
+
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12 px-4 mt-20">
         <div className="container mx-auto text-center">
@@ -206,7 +231,7 @@ const Index = () => {
           </div>
           <h3 className="text-2xl font-bold mb-4">Restaurante Arroz master</h3>
           <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-            Comprometidos con ofrecerte la mejor experiencia gastronómica. 
+            Comprometidos con ofrecerte la mejor experiencia gastronómica.
             Síguenos en nuestras redes sociales y mantente al día con nuestras novedades.
           </p>
           <div className="flex justify-center space-x-6 text-sm text-gray-400">

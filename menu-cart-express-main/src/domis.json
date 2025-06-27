@@ -1,5 +1,5 @@
 [
-{ "barrio": "Recoger en el restaurate", "tarifa": 0 },
+  { "barrio": "Recoger en el restaurante", "tarifa": 0 },
   { "barrio": "La Leonora", "tarifa": 4000 },
   { "barrio": "Centro", "tarifa": 5000 },
   { "barrio": "Ciudadela La Linda", "tarifa": 5000 },
