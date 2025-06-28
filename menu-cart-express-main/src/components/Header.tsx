@@ -58,14 +58,18 @@ export const Header = ({
   const totalPrice = subtotal + (cart.length > 0 ? deliveryCost : 0);
   const location = useLocation();
 
+
+  // logo 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 restaurant-gradient rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-sm">R</span>
-            </div>
+            <img
+              src="https://raw.githubusercontent.com/jhonedwar12/imagenes/main/imagenpaisa.jpg"
+              alt="Logo Restaurante"
+              className="w-10 h-10 rounded-full object-cover"
+            />
             <h1 className="text-xl font-bold text-gray-800">Restaurante Arroz master</h1>
           </Link>
         </div>
@@ -187,7 +191,7 @@ export const Header = ({
                           setSelectedBarrio(barrio);
 
                           // Si elige "Recoger en el restaurante", el domicilio es 0
-                          if (barrio === "Recoger en el restaurante") {
+                          if (barrio === "Recoger en el restaurante" || barrio === "Otra opcion") {
                             setDomicilio(0);
                           } else {
                             const tarifa = domis.find(b => b.barrio === barrio)?.tarifa || 0;
@@ -199,23 +203,26 @@ export const Header = ({
                         <option value=""> Seleccionar </option>
                         {domis.map(b => (
                           <option key={b.barrio} value={b.barrio}>
-                            {b.barrio} (${b.tarifa.toLocaleString()})
+                            {b.barrio} ${b.tarifa.toLocaleString()}
                           </option>
                         ))}
                         <option value="Recoger en el restaurante">Recoger en el restaurante</option>
+                        <option value="Otro barrio a convenir con el cliente">Otro barrio o zona</option>
                       </select>
 
-                      {selectedBarrio && selectedBarrio !== "Recoger en el restaurante" && (
-                        <input
-                          id="direccion"
-                          type="text"
-                          value={direccion}
-                          onChange={e => setDireccion(e.target.value)}
-                          className="border rounded px-3 py-2 w-full mb-4"
-                          placeholder="Escribe tu dirección aquí"
-                          required
-                        />
-                      )}
+                      {selectedBarrio &&
+                        selectedBarrio !== "Recoger en el restaurante" &&
+                        selectedBarrio !== "Otro barrio a convenir con el cliente" && (
+                          <input
+                            id="direccion"
+                            type="text"
+                            value={direccion}
+                            onChange={e => setDireccion(e.target.value)}
+                            className="border rounded px-3 py-2 w-full mb-4"
+                            placeholder="Escribe tu dirección aquí..."
+                            required
+                          />
+                        )}
 
 
                       <Button

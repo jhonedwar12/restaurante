@@ -88,11 +88,21 @@ const Index = () => {
   const handleWhatsAppOrder = () => {
     if (!selectedBarrio) {
       toast({
-        title: "Selecciona tu barrio",
-        description: "Debes seleccionar un barrio antes de hacer el pedido.",
+        title: "Selecciona donde quieres tu pedido",
+        description: "Debes hacer la selección antes de hacer el pedido.",
         variant: "destructive",
       });
       return;
+    }
+    if (selectedBarrio !== "Otro barrio a convenir con el cliente" && selectedBarrio !== "Recoger en el restaurante") {
+      if (!direccion || direccion.length < 10) {
+        toast({
+          title: "Debes escribir  tu dirección",
+          description: "Debes dar la direccion correctamente antes de hacer el pedido.",
+          variant: "destructive",
+        });
+        return;
+      }
     }
     if (cart.length === 0) {
       toast({
@@ -111,13 +121,13 @@ const Index = () => {
       message += `  🍗 ${item.name} x${item.quantity} - 💵 $${(item.price * item.quantity).toLocaleString()}\n`;
     });
 
-    message += `\n  📍 *Barrio:* ${selectedBarrio}`;
+    message += `\n  📍 *Para :* ${selectedBarrio}`;
     message += `\n  🏡 *Dirección:* ${direccion}`;
     message += `\n  🧾 *Subtotal:* $${subtotal.toLocaleString()}`;
     message += `\n  🛵 *Domicilio:* $${domicilio.toLocaleString()}`;
     message += `\n  💲 *Total:* $${total.toLocaleString()}\n`;
     message += "¡Muchas gracias! 😁 \n\n";
-    message += "¡Recuerda, puedes pagar cuando te llegue en *efectivo* o transferir el total al siguiente Nequi : 3022685964! ";
+    message += "¡Recuerda, puedes pagar cuando te llegue en *efectivo* o transferir el total al siguiente Nequi : 3022685964 ! ";
 
 
     const encodedMessage = encodeURIComponent(message);
@@ -154,14 +164,21 @@ const Index = () => {
         setDireccion={setDireccion}
       />
 
-      {/* Hero Section */}
+      {/* Hero Section  header */}
       <section
         className="relative py-20 px-4 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(rgba(255, 107, 53, 0.8), rgba(247, 147, 30, 0.8)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`
+          backgroundImage: `linear-gradient(rgba(255, 107, 53, 0.8), rgba(247, 147, 30, 0.8)), url('https://raw.githubusercontent.com/jhonedwar12/imagenes/main/fondo1.png')`
         }}
       >
         <div className="container mx-auto text-center text-white">
+          <div className="w-12 h-12 mx-auto mb-4">
+            <img
+              src="https://raw.githubusercontent.com/jhonedwar12/imagenes/main/imagenpaisa.jpg"
+              alt="Logo Restaurante"
+              className="w-12 h-12 rounded-full object-cover mx-auto"
+            />
+          </div>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-lg">
             Bienvenido a <span className="text-white">Arroz master</span>
           </h1>
@@ -206,28 +223,15 @@ const Index = () => {
       </section>
 
 
-      {/* Dirección de entrega */}
-      {selectedBarrio !== "Recoger en el restaurante" && (
-        <div className="flex flex-col items-center my-4">
-          <label htmlFor="direccion" className="mb-2 font-semibold">Dirección de entrega:</label>
-          <input
-            id="direccion"
-            type="text"
-            value={direccion}
-            onChange={e => setDireccion(e.target.value)}
-            className="border rounded px-3 py-2 w-80"
-            placeholder="Escribe tu dirección aquí"
-            required
-          />
-        </div>
-      )}
-
-
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12 px-4 mt-20">
         <div className="container mx-auto text-center">
-          <div className="w-12 h-12 restaurant-gradient rounded-full flex items-center justify-center mx-auto mb-4">
-            <span className="text-white font-bold text-xl">R</span>
+          <div className="w-12 h-12 mx-auto mb-4">
+            <img
+              src="https://raw.githubusercontent.com/jhonedwar12/imagenes/main/imagenpaisa.jpg"
+              alt="Logo Restaurante"
+              className="w-12 h-12 rounded-full object-cover mx-auto"
+            />
           </div>
           <h3 className="text-2xl font-bold mb-4">Restaurante Arroz master</h3>
           <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
@@ -236,7 +240,7 @@ const Index = () => {
           </p>
           <div className="flex justify-center space-x-6 text-sm text-gray-400">
             <span>📍 Av santander # 54-15, Manizales</span>
-            <span>📞 +57 313 6284586</span>
+            <span>📞 +57 302 2685964</span>
             <span>⏰ Lun-Dom: 11:00 AM - 5:00 PM</span>
           </div>
         </div>

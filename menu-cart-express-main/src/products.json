@@ -131,7 +131,7 @@
     "id": 17,
     "name": "Arroz Paisa",
     "price":   { "personal 2 personas": 20000, "mediano 4 personas": 40000, "familiar 6 personas": 50000 },
-    "image": "https://via.placeholder.com/300x200?text=Arroz+Paisa",
+    "image": "https://raw.githubusercontent.com/jhonedwar12/imagenes/main/imagenpaisa.jpg",
     "description": "Chorizo, pollo, cerdo, salchicha, chicharrón, plátano maduro, maíz tierno.",
     "category": "arroces"
   },

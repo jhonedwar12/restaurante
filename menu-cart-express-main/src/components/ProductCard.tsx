@@ -69,8 +69,8 @@ export const ProductCard = ({ product, addToCart }: ProductCardProps) => {
           >
             {Object.entries(product.price).map(([size, price]) => (
               <option key={size} value={size}>
-                {size.charAt(0).toUpperCase() + size.slice(1)} (${""}
-                {Number(price).toLocaleString()})
+                {size.charAt(0).toUpperCase() + size.slice(1)} ${" "}
+                {Number(price).toLocaleString()}
               </option>
             ))}
           </select>
