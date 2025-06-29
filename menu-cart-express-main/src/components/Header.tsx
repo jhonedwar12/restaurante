@@ -54,12 +54,10 @@ export const Header = ({
   setDireccion,
 }: HeaderProps) => {
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const totalPrice = subtotal + (cart.length > 0 ? deliveryCost : 0);
   const location = useLocation();
 
-
-  // logo 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -74,26 +72,24 @@ export const Header = ({
           </Link>
         </div>
 
-        {/* Navigation */}
+        {/* Navegación en escritorio */}
         <nav className="hidden md:flex items-center space-x-6">
           <Link
             to="/"
-            className={`text-sm font-medium transition-colors hover:text-orange-600 ${location.pathname === '/' ? 'text-orange-600' : 'text-gray-700'
-              }`}
+            className={`text-sm font-medium transition-colors hover:text-orange-600 ${location.pathname === '/' ? 'text-orange-600' : 'text-gray-700'}`}
           >
             Menú
           </Link>
           <Link
             to="/sobre-nosotros"
-            className={`text-sm font-medium transition-colors hover:text-orange-600 ${location.pathname === '/sobre-nosotros' ? 'text-orange-600' : 'text-gray-700'
-              }`}
+            className={`text-sm font-medium transition-colors hover:text-orange-600 ${location.pathname === '/sobre-nosotros' ? 'text-orange-600' : 'text-gray-700'}`}
           >
             Sobre Nosotros
           </Link>
         </nav>
 
         <div className="flex items-center space-x-2">
-          {/* Mobile Navigation */}
+          {/* Navegación móvil */}
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="sm" className="md:hidden">
@@ -105,25 +101,18 @@ export const Header = ({
                 <SheetTitle>Navegación</SheetTitle>
               </SheetHeader>
               <div className="mt-6 space-y-4">
-                <Link
-                  to="/"
-                  className={`block text-lg font-medium transition-colors hover:text-orange-600 ${location.pathname === '/' ? 'text-orange-600' : 'text-gray-700'
-                    }`}
-                >
+                <Link to="/" className={`block text-lg font-medium transition-colors hover:text-orange-600 ${location.pathname === '/' ? 'text-orange-600' : 'text-gray-700'}`}>
                   Menú
                 </Link>
-                <Link
-                  to="/sobre-nosotros"
-                  className={`block text-lg font-medium transition-colors hover:text-orange-600 ${location.pathname === '/sobre-nosotros' ? 'text-orange-600' : 'text-gray-700'
-                    }`}
-                >
+                <Link to="/sobre-nosotros" className={`block text-lg font-medium transition-colors hover:text-orange-600 ${location.pathname === '/sobre-nosotros' ? 'text-orange-600' : 'text-gray-700'}`}>
                   Sobre Nosotros
                 </Link>
               </div>
             </SheetContent>
           </Sheet>
 
-          {/* Cart */}
+          {/* Carrito de compras */}
+
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="outline" size="sm" className="relative">
@@ -138,7 +127,8 @@ export const Header = ({
                 )}
               </Button>
             </SheetTrigger>
-            <SheetContent>
+
+            <SheetContent className="flex flex-col h-screen md:h-[100vh] p-4">
               <SheetHeader>
                 <SheetTitle>Carrito de Compras</SheetTitle>
                 <SheetDescription>
@@ -146,23 +136,24 @@ export const Header = ({
                 </SheetDescription>
               </SheetHeader>
 
-              <div className="mt-6 space-y-4">
+              {/* Todo el contenido scrollable */}
+              <div className="flex-1 overflow-y-auto mt-1 space-y-1">
                 {cart.length === 0 ? (
-                  <p className="text-center text-gray-500 py-8">Tu carrito está vacío</p>
+                  <p className="text-center text-gray-500 py-8">
+                    Tu carrito está vacío
+                  </p>
                 ) : (
                   <>
-                    <div className="space-y-3 max-h-96 overflow-y-auto">
-                      {cart.map((item) => (
-                        <CartItem
-                          key={item.id}
-                          item={item}
-                          updateQuantity={updateQuantity}
-                          removeFromCart={removeFromCart}
-                        />
-                      ))}
-                    </div>
+                    {cart.map((item) => (
+                      <CartItem
+                        key={item.id}
+                        item={item}
+                        updateQuantity={updateQuantity}
+                        removeFromCart={removeFromCart}
+                      />
+                    ))}
 
-                    <div className="border-t pt-4 space-y-2">
+                    <div className="border-t pt-4 space-y-2 bg-white">
                       <div className="flex justify-between items-center">
                         <span className="text-sm">Subtotal:</span>
                         <span className="text-sm font-medium">
@@ -182,32 +173,41 @@ export const Header = ({
                         </span>
                       </div>
 
-                      <label htmlFor="barrio" className="font-semibold mb-2 block">Seleccion donde quieres tu pedido:</label>
+                      <label htmlFor="barrio" className="font-semibold mb-2 block">
+                        Selecciona dónde quieres tu pedido:
+                      </label>
                       <select
                         id="barrio"
                         value={selectedBarrio}
-                        onChange={e => {
+                        onChange={(e) => {
                           const barrio = e.target.value;
                           setSelectedBarrio(barrio);
 
-                          // Si elige "Recoger en el restaurante", el domicilio es 0
-                          if (barrio === "Recoger en el restaurante" || barrio === "Otra opcion") {
+                          if (
+                            barrio === "Recoger en el restaurante" ||
+                            barrio === "Otro barrio a convenir con el cliente"
+                          ) {
                             setDomicilio(0);
                           } else {
-                            const tarifa = domis.find(b => b.barrio === barrio)?.tarifa || 0;
+                            const tarifa =
+                              domis.find((b) => b.barrio === barrio)?.tarifa || 0;
                             setDomicilio(tarifa);
                           }
                         }}
                         className="border rounded px-3 py-2 w-full mb-4"
                       >
-                        <option value=""> Seleccionar </option>
-                        {domis.map(b => (
+                        <option value="">Seleccionar</option>
+                        {domis.map((b) => (
                           <option key={b.barrio} value={b.barrio}>
                             {b.barrio} ${b.tarifa.toLocaleString()}
                           </option>
                         ))}
-                        <option value="Recoger en el restaurante">Recoger en el restaurante</option>
-                        <option value="Otro barrio a convenir con el cliente">Otro barrio o zona</option>
+                        <option value="Recoger en el restaurante">
+                          Recoger en el restaurante
+                        </option>
+                        <option value="Otro barrio a convenir con el cliente">
+                          Otro barrio o zona
+                        </option>
                       </select>
 
                       {selectedBarrio &&
@@ -217,20 +217,23 @@ export const Header = ({
                             id="direccion"
                             type="text"
                             value={direccion}
-                            onChange={e => setDireccion(e.target.value)}
+                            onChange={(e) => setDireccion(e.target.value)}
                             className="border rounded px-3 py-2 w-full mb-4"
                             placeholder="Escribe tu dirección aquí..."
                             required
                           />
                         )}
 
-
-                      <Button
-                        onClick={handleWhatsAppOrder}
-                        className="w-full bg-green-500 text-white"
-                      >
-                        Finalizar pedido por WhatsApp
-                      </Button>
+                      <div className="pt-2 pb-4">
+                        {cart.length > 0 && (
+                          <Button
+                            onClick={handleWhatsAppOrder}
+                            className="w-full bg-green-500 text-white"
+                          >
+                            Finalizar pedido por WhatsApp
+                          </Button>
+                        )}
+                      </div>
                     </div>
                   </>
                 )}
