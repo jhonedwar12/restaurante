@@ -230,10 +230,15 @@ export const Header = ({
                             onClick={handleWhatsAppOrder}
                             className="w-full bg-green-500 text-white"
                           >
-                            Finalizar pedido por WhatsApp
+                            Finalizar pedido por WhatsApp.
+
+                            
                           </Button>
                         )}
                       </div>
+                      <p className="text-sm text-gray-500">
+                          {/* Espacio visual al final del carrito */}
+                      </p>
                     </div>
                   </>
                 )}
