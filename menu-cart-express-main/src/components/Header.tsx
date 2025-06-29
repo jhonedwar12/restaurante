@@ -153,7 +153,12 @@ export const Header = ({
                       />
                     ))}
 
-                    <div className="border-t pt-3 space-y-2 bg-white">
+                    
+                  </>
+                )}
+             
+              </div>
+              <div className="border-t pt-3 space-y-2 bg-white">
                       <div className="flex justify-between items-center">
                         <span className="text-sm">Subtotal:</span>
                         <span className="text-sm font-medium">
@@ -231,10 +236,7 @@ export const Header = ({
                         Finalizar pedido por WhatsApp
                       </Button>
                     </div>
-                  </>
-                )}
-                <div className="h-8" />
-              </div>
+                       <div className="h-8" />
             </SheetContent>
           </Sheet>
         </div>
