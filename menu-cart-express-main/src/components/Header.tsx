@@ -224,7 +224,12 @@ export const Header = ({
                           />
                         )}
 
-                      <div className="pt-2 pb-4">
+                     
+                    </div>
+                  </>
+                )}
+              </div>
+               <div className="pt-2 pb-4">
                         {cart.length > 0 && (
                           <Button
                             onClick={handleWhatsAppOrder}
@@ -234,10 +239,6 @@ export const Header = ({
                           </Button>
                         )}
                       </div>
-                    </div>
-                  </>
-                )}
-              </div>
             </SheetContent>
           </Sheet>
         </div>
