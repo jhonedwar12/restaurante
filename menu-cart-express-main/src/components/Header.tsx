@@ -128,7 +128,7 @@ export const Header = ({
               </Button>
             </SheetTrigger>
 
-            <SheetContent className="flex flex-col h-screen md:h-[100vh] p-4">
+            <SheetContent className="flex flex-col h-screen md:h-[95vh] p-4">
               <SheetHeader>
                 <SheetTitle>Carrito de Compras</SheetTitle>
                 <SheetDescription>
