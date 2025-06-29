@@ -239,6 +239,9 @@ export const Header = ({
                       <p className="text-sm text-gray-500">
                           {/* Espacio visual al final del carrito */}
                       </p>
+                      <p className="text-sm text-gray-500">
+                          {/* Espacio visual al final del carrito */}
+                      </p>
                     </div>
                   </>
                 )}
