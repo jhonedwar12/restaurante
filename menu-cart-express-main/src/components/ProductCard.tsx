@@ -48,9 +48,7 @@ export const ProductCard = ({ product, addToCart }: ProductCardProps) => {
 
       <CardContent className="p-4">
         <div className="flex items-start justify-between mb-2">
-          <h3 className="font-semibold text-lg text-gray-900 line-clamp-1">
-            {product.name}
-          </h3>
+          <h3 className="text-lg font-semibold break-words">{product.name}</h3>
           <Badge variant="secondary" className="text-xs">
             {product.category}
           </Badge>
