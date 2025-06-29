@@ -137,7 +137,7 @@ export const Header = ({
               </SheetHeader>
 
               {/* Todo el contenido scrollable */}
-              <div className="flex-1 overflow-y-auto mt-3 space-y-2">
+              <div className="flex-1 overflow-y-auto mt-4 space-y-3">
                 {cart.length === 0 ? (
                   <p className="text-center text-gray-500 py-8">
                     Tu carrito está vacío
@@ -245,11 +245,11 @@ export const Header = ({
 
                       
                       {/* Espacio visual al final del carrito */}
-                      <div className="h-10" />
+                      <div className="h-8" />
                       <p className="text-sm text-gray-500">
         
                       </p>
-                      <div className="h-10" />
+                      <div className="h-8" />
             </SheetContent>
           </Sheet>
         </div>
