@@ -128,7 +128,7 @@ export const Header = ({
               </Button>
             </SheetTrigger>
 
-            <SheetContent className="flex flex-col h-screen md:h-[100vh] p-4">
+            <SheetContent className="flex flex-col h-screen md:h-[90vh] p-4">
               <SheetHeader>
                 <SheetTitle>Carrito de Compras</SheetTitle>
                 <SheetDescription>
@@ -173,72 +173,75 @@ export const Header = ({
                         </span>
                       </div>
 
-                      <label htmlFor="barrio" className="font-semibold mb-2 block">
-                        Selecciona dónde quieres tu pedido:
-                      </label>
-                      <select
-                        id="barrio"
-                        value={selectedBarrio}
-                        onChange={(e) => {
-                          const barrio = e.target.value;
-                          setSelectedBarrio(barrio);
 
-                          if (
-                            barrio === "Recoger en el restaurante" ||
-                            barrio === "Otro barrio a convenir con el cliente"
-                          ) {
-                            setDomicilio(0);
-                          } else {
-                            const tarifa =
-                              domis.find((b) => b.barrio === barrio)?.tarifa || 0;
-                            setDomicilio(tarifa);
-                          }
-                        }}
-                        className="border rounded px-3 py-2 w-full mb-4"
-                      >
-                        <option value="">Seleccionar</option>
-                        {domis.map((b) => (
-                          <option key={b.barrio} value={b.barrio}>
-                            {b.barrio} ${b.tarifa.toLocaleString()}
-                          </option>
-                        ))}
-                        <option value="Recoger en el restaurante">
-                          Recoger en el restaurante
-                        </option>
-                        <option value="Otro barrio a convenir con el cliente">
-                          Otro barrio o zona
-                        </option>
-                      </select>
 
-                      {selectedBarrio &&
-                        selectedBarrio !== "Recoger en el restaurante" &&
-                        selectedBarrio !== "Otro barrio a convenir con el cliente" && (
-                          <input
-                            id="direccion"
-                            type="text"
-                            value={direccion}
-                            onChange={(e) => setDireccion(e.target.value)}
-                            className="border rounded px-3 py-2 w-full mb-4"
-                            placeholder="Escribe tu dirección aquí..."
-                            required
-                          />
-                        )}
 
-                     
                     </div>
                   </>
                 )}
               </div>
-               <div className="pt-2 pb-4">
-                        {cart.length > 0 && (
-                          <Button
-                            onClick={handleWhatsAppOrder}
-                            className="w-full bg-green-500 text-white"
-                          >
-                            Finalizar pedido por WhatsApp
-                          </Button>
-                        )}
-                      </div>
+
+              {/* Formulario de dirección y barrio */}
+              <label htmlFor="barrio" className="font-semibold mb-2 block">
+                Selecciona dónde quieres tu pedido:
+              </label>
+              <select
+                id="barrio"
+                value={selectedBarrio}
+                onChange={(e) => {
+                  const barrio = e.target.value;
+                  setSelectedBarrio(barrio);
+
+                  if (
+                    barrio === "Recoger en el restaurante" ||
+                    barrio === "Otro barrio a convenir con el cliente"
+                  ) {
+                    setDomicilio(0);
+                  } else {
+                    const tarifa =
+                      domis.find((b) => b.barrio === barrio)?.tarifa || 0;
+                    setDomicilio(tarifa);
+                  }
+                }}
+                className="border rounded px-3 py-2 w-full mb-4"
+              >
+                <option value="">Seleccionar</option>
+                {domis.map((b) => (
+                  <option key={b.barrio} value={b.barrio}>
+                    {b.barrio} ${b.tarifa.toLocaleString()}
+                  </option>
+                ))}
+                <option value="Recoger en el restaurante">
+                  Recoger en el restaurante
+                </option>
+                <option value="Otro barrio a convenir con el cliente">
+                  Otro barrio o zona
+                </option>
+              </select>
+
+              {selectedBarrio &&
+                selectedBarrio !== "Recoger en el restaurante" &&
+                selectedBarrio !== "Otro barrio a convenir con el cliente" && (
+                  <input
+                    id="direccion"
+                    type="text"
+                    value={direccion}
+                    onChange={(e) => setDireccion(e.target.value)}
+                    className="border rounded px-3 py-2 w-full mb-4"
+                    placeholder="Escribe tu dirección aquí..."
+                    required
+                  />
+                )}
+              <div className="pt-2 pb-4">
+                {cart.length > 0 && (
+                  <Button
+                    onClick={handleWhatsAppOrder}
+                    className="w-full bg-green-500 text-white"
+                  >
+                    Finalizar pedido por WhatsApp
+                  </Button>
+                )}
+              </div>
             </SheetContent>
           </Sheet>
         </div>
