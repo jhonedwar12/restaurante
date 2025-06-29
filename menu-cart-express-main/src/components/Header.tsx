@@ -173,7 +173,13 @@ export const Header = ({
                         </span>
                       </div>
 
-                      {/* Formulario de dirección y barrio */}
+                      
+
+                    </div>
+                  </>
+                )}
+              </div>
+              {/* Formulario de dirección y barrio */}
                       <label htmlFor="barrio" className="font-semibold mb-2 block">
                         Selecciona dónde quieres tu pedido:
                       </label>
@@ -236,17 +242,14 @@ export const Header = ({
                           </Button>
                         )}
                       </div>
+
+                      
                       {/* Espacio visual al final del carrito */}
-                      <div className="h-16" />
+                      <div className="h-12" />
                       <p className="text-sm text-gray-500">
         
                       </p>
-                      <div className="h-16" />
-
-                    </div>
-                  </>
-                )}
-              </div>
+                      <div className="h-12" />
             </SheetContent>
           </Sheet>
         </div>
