@@ -136,8 +136,8 @@ export const Header = ({
                 </SheetDescription>
               </SheetHeader>
 
-              {/* Todo el contenido scrollable */}
-              <div className="flex-1 overflow-y-auto mt-4 space-y-3">
+              {/* Área scrollable de productos, ahora más grande */}
+              <div className="flex-1 overflow-y-auto mt-1 space-y-1">
                 {cart.length === 0 ? (
                   <p className="text-center text-gray-500 py-8">
                     Tu carrito está vacío
@@ -153,104 +153,88 @@ export const Header = ({
                       />
                     ))}
 
+                    <div className="border-t pt-3 space-y-2 bg-white">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm">Subtotal:</span>
+                        <span className="text-sm font-medium">
+                          ${subtotal.toLocaleString()}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm">Domicilio:</span>
+                        <span className="text-sm font-medium">
+                          ${deliveryCost.toLocaleString()}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center border-t pt-2">
+                        <span className="text-lg font-semibold">Total:</span>
+                        <span className="text-xl font-bold text-orange-600">
+                          ${totalPrice.toLocaleString()}
+                        </span>
+                      </div>
+
+                      <label htmlFor="barrio" className="font-semibold mb-1 block">
+                        Selecciona dónde quieres tu pedido:
+                      </label>
+                      <select
+                        id="barrio"
+                        value={selectedBarrio}
+                        onChange={(e) => {
+                          const barrio = e.target.value;
+                          setSelectedBarrio(barrio);
+
+                          if (
+                            barrio === "Recoger en el restaurante" ||
+                            barrio === "Otro barrio a convenir con el cliente"
+                          ) {
+                            setDomicilio(0);
+                          } else {
+                            const tarifa =
+                              domis.find((b) => b.barrio === barrio)?.tarifa || 0;
+                            setDomicilio(tarifa);
+                          }
+                        }}
+                        className="border rounded px-3 py-2 w-full mb-1"
+                      >
+                        <option value="">Seleccionar</option>
+                        {domis.map((b) => (
+                          <option key={b.barrio} value={b.barrio}>
+                            {b.barrio} ${b.tarifa.toLocaleString()}
+                          </option>
+                        ))}
+                        <option value="Recoger en el restaurante">
+                          Recoger en el restaurante
+                        </option>
+                        <option value="Otro barrio a convenir con el cliente">
+                          Otro barrio o zona
+                        </option>
+                      </select>
+
+                      {selectedBarrio &&
+                        selectedBarrio !== "Recoger en el restaurante" &&
+                        selectedBarrio !== "Otro barrio a convenir con el cliente" && (
+                          <input
+                            id="direccion"
+                            type="text"
+                            value={direccion}
+                            onChange={(e) => setDireccion(e.target.value)}
+                            className="border rounded px-3 py-2 w-full mb-1"
+                            placeholder="Escribe tu dirección aquí..."
+                            required
+                          />
+                        )}
+
+                      <Button
+                        onClick={handleWhatsAppOrder}
+                        className="w-full bg-green-500 text-white mt-2"
+                      >
+                        Finalizar pedido por WhatsApp
+                      </Button>
+                    </div>
                   </>
                 )}
+                <div className="h-8" />
               </div>
-              {/* Resumen del pedido */}
-              <div className="border-t pt-4 space-y-2 bg-white">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">Subtotal:</span>
-                  <span className="text-sm font-medium">
-                    ${subtotal.toLocaleString()}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">Domicilio:</span>
-                  <span className="text-sm font-medium">
-                    ${deliveryCost.toLocaleString()}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center border-t pt-2">
-                  <span className="text-lg font-semibold">Total:</span>
-                  <span className="text-xl font-bold text-orange-600">
-                    ${totalPrice.toLocaleString()}
-                  </span>
-                </div>
-
-
-
-              </div>
-              {/* Formulario de dirección y barrio */}
-              <label htmlFor="barrio" className="font-semibold mb-2 block">
-                Selecciona dónde quieres tu pedido:
-              </label>
-              <select
-                id="barrio"
-                value={selectedBarrio}
-                onChange={(e) => {
-                  const barrio = e.target.value;
-                  setSelectedBarrio(barrio);
-
-                  if (
-                    barrio === "Recoger en el restaurante" ||
-                    barrio === "Otro barrio a convenir con el cliente"
-                  ) {
-                    setDomicilio(0);
-                  } else {
-                    const tarifa =
-                      domis.find((b) => b.barrio === barrio)?.tarifa || 0;
-                    setDomicilio(tarifa);
-                  }
-                }}
-                className="border rounded px-3 py-2 w-full mb-4"
-              >
-                <option value="">Seleccionar</option>
-                {domis.map((b) => (
-                  <option key={b.barrio} value={b.barrio}>
-                    {b.barrio} ${b.tarifa.toLocaleString()}
-                  </option>
-                ))}
-                <option value="Recoger en el restaurante">
-                  Recoger en el restaurante
-                </option>
-                <option value="Otro barrio a convenir con el cliente">
-                  Otro barrio o zona
-                </option>
-              </select>
-
-              {selectedBarrio &&
-                selectedBarrio !== "Recoger en el restaurante" &&
-                selectedBarrio !== "Otro barrio a convenir con el cliente" && (
-                  <input
-                    id="direccion"
-                    type="text"
-                    value={direccion}
-                    onChange={(e) => setDireccion(e.target.value)}
-                    className="border rounded px-3 py-2 w-full mb-4"
-                    placeholder="Escribe tu dirección aquí..."
-                    required
-                  />
-                )}
-              <div className="pt-2 pb-4">
-                {cart.length > 0 && (
-                  <Button
-                    onClick={handleWhatsAppOrder}
-                    className="w-full bg-green-500 text-white"
-                  >
-                    Finalizar pedido por WhatsApp.
-
-
-                  </Button>
-                )}
-              </div>
-
-
-              {/* Espacio visual al final del carrito */}
-              <div className="h-8" />
-              <p className="text-sm text-gray-500">
-
-              </p>
-              <div className="h-8" />
             </SheetContent>
           </Sheet>
         </div>
