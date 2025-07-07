@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { ProductCard } from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
@@ -26,9 +26,15 @@ const Index = () => {
   const [selectedBarrio, setSelectedBarrio] = useState("");
   const [domicilio, setDomicilio] = useState(0);
   const [direccion, setDireccion] = useState("");
+  const [pedidosHabilitados, setPedidosHabilitados] = useState(true);
   const { toast } = useToast();
   const { products, categories, loading } = useProducts();
   const { domis } = useDomis();
+
+  useEffect(() => {
+    const stored = localStorage.getItem("pedidosHabilitados");
+    setPedidosHabilitados(stored === null ? true : JSON.parse(stored));
+  }, []);
 
   const filteredProducts = selectedCategory === "Todos"
     ? products
@@ -87,6 +93,8 @@ const Index = () => {
   };
 
   const handleWhatsAppOrder = () => {
+    if (!pedidosHabilitados) return;
+
     if (!selectedBarrio) {
       toast({
         title: "Selecciona donde quieres tu pedido",
@@ -163,6 +171,7 @@ const Index = () => {
         domis={domis}
         direccion={direccion}
         setDireccion={setDireccion}
+        pedidosHabilitados={pedidosHabilitados} // <-- agrega esto
       />
 
       {/* Hero Section  header */}
