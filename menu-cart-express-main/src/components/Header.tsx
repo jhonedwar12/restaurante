@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/sheet";
 import { CartItem } from "./CartItem";
 import { useState } from "react";
+import { LOGO_URL } from "@/constants";
 
 interface Product {
   id: number;
@@ -64,7 +65,7 @@ export const Header = ({
         <div className="flex items-center space-x-2">
           <Link to="/" className="flex items-center space-x-2">
             <img
-              src="https://raw.githubusercontent.com/jhonedwar12/imagenes/main/imagenpaisa.jpg"
+              src={LOGO_URL}
               alt="Logo Restaurante"
               className="w-10 h-10 rounded-full object-cover"
             />

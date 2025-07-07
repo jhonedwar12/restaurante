@@ -8,19 +8,25 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50">
-      <Header 
+      <Header
         cart={[]}
         updateQuantity={() => {}}
         removeFromCart={() => {}}
         handleWhatsAppOrder={() => {}}
-        deliveryCost={4000}
+        deliveryCost={0}
+        domis={[]}
+        selectedBarrio=""
+        setSelectedBarrio={() => {}}
+        setDomicilio={() => {}}
+        direccion=""
+        setDireccion={() => {}}
       />
 
       {/* Hero Section with Background */}
       <section 
         className="relative py-20 px-4 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80')`
+          backgroundImage: `linear-gradient(rgba(223, 96, 96, 0.44), rgba(0,0,0,0.5)), url('https://raw.githubusercontent.com/jhonedwar12/imagenes/main/fondo2.png')`
         }}
       >
         <div className="container mx-auto text-center text-white">
@@ -116,7 +122,7 @@ const About = () => {
               <div className="flex flex-col items-center">
                 <Phone className="h-6 w-6 text-orange-500 mb-2" />
                 <h3 className="font-semibold text-gray-900 mb-1">Teléfono</h3>
-                <p className="text-gray-600">+57 313 6284586</p>
+                <p className="text-gray-600">+57 302 2685964</p>
               </div>
               <div className="flex flex-col items-center">
                 <Clock className="h-6 w-6 text-orange-500 mb-2" />

@@ -54,7 +54,8 @@ export const ProductCard = ({ product, addToCart }: ProductCardProps) => {
           </Badge>
         </div>
 
-        <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+
+        <p className="text-gray-600 text-sm mb-3 break-words">
           {product.description}
         </p>
 
