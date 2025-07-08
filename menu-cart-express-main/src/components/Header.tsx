@@ -237,6 +237,7 @@ export const Header = ({
                         />
                       )}
 
+                    <div/>
                     <Button
                       onClick={handleWhatsAppOrder}
                       className="w-full bg-green-500 text-white mt-2"
@@ -244,6 +245,8 @@ export const Header = ({
                       Finalizar pedido por WhatsApp
                     </Button>
                   </div>
+                   <div className="h-8" />
+                  {/* Espacio para evitar que el botón de WhatsApp se superponga al contenido */}
                 </>
               )}
             </SheetContent>
