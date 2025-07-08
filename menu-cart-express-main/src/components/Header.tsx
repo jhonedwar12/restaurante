@@ -245,7 +245,7 @@ export const Header = ({
                       Finalizar pedido por WhatsApp
                     </Button>
                   </div>
-                   <div className="h-8" />
+                   <div className="h-10" />
                   {/* Espacio para evitar que el botón de WhatsApp se superponga al contenido */}
                 </>
               )}
