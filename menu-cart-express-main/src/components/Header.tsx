@@ -11,7 +11,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { CartItem } from "./CartItem";
-import { useState } from "react";
 import { LOGO_URL } from "@/constants";
 
 interface Product {
@@ -39,7 +38,7 @@ interface HeaderProps {
   setDomicilio: (tarifa: number) => void;
   direccion: string;
   setDireccion: (direccion: string) => void;
-  pedidosHabilitados: boolean; // <-- agrega esto
+  pedidosHabilitados: boolean;
 }
 
 export const Header = ({
@@ -75,17 +74,16 @@ export const Header = ({
           </Link>
         </div>
 
-        {/* Navegación en escritorio */}
         <nav className="hidden md:flex items-center space-x-6">
           <Link
             to="/"
-            className={`text-sm font-medium transition-colors hover:text-orange-600 ${location.pathname === '/' ? 'text-orange-600' : 'text-gray-700'}`}
+            className={`text-sm font-medium hover:text-orange-600 ${location.pathname === "/" ? "text-orange-600" : "text-gray-700"}`}
           >
             Menú
           </Link>
           <Link
             to="/sobre-nosotros"
-            className={`text-sm font-medium transition-colors hover:text-orange-600 ${location.pathname === '/sobre-nosotros' ? 'text-orange-600' : 'text-gray-700'}`}
+            className={`text-sm font-medium hover:text-orange-600 ${location.pathname === "/sobre-nosotros" ? "text-orange-600" : "text-gray-700"}`}
           >
             Sobre Nosotros
           </Link>
@@ -104,17 +102,23 @@ export const Header = ({
                 <SheetTitle>Navegación</SheetTitle>
               </SheetHeader>
               <div className="mt-6 space-y-4">
-                <Link to="/" className={`block text-lg font-medium transition-colors hover:text-orange-600 ${location.pathname === '/' ? 'text-orange-600' : 'text-gray-700'}`}>
+                <Link
+                  to="/"
+                  className={`block text-lg font-medium hover:text-orange-600 ${location.pathname === "/" ? "text-orange-600" : "text-gray-700"}`}
+                >
                   Menú
                 </Link>
-                <Link to="/sobre-nosotros" className={`block text-lg font-medium transition-colors hover:text-orange-600 ${location.pathname === '/sobre-nosotros' ? 'text-orange-600' : 'text-gray-700'}`}>
+                <Link
+                  to="/sobre-nosotros"
+                  className={`block text-lg font-medium hover:text-orange-600 ${location.pathname === "/sobre-nosotros" ? "text-orange-600" : "text-gray-700"}`}
+                >
                   Sobre Nosotros
                 </Link>
               </div>
             </SheetContent>
           </Sheet>
 
-          {/* Carrito de compras */}
+          {/* Carrito */}
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="outline" size="sm" className="relative">
@@ -130,15 +134,12 @@ export const Header = ({
               </Button>
             </SheetTrigger>
 
-            <SheetContent className="flex flex-col h-screen md:h-[100vh] p-4">
+            <SheetContent className="flex flex-col min-h-screen p-4 pb-16">
               <SheetHeader>
                 <SheetTitle>Carrito de Compras</SheetTitle>
-                <SheetDescription>
-                  Revisa tu pedido antes de continuar
-                </SheetDescription>
+                <SheetDescription>Revisa tu pedido antes de continuar</SheetDescription>
               </SheetHeader>
 
-              {/* SOLO muestra el mensaje si los pedidos están inhabilitados */}
               {!pedidosHabilitados ? (
                 <div className="flex-1 flex items-center justify-center">
                   <p className="text-center text-lg text-red-600 font-semibold">
@@ -147,37 +148,29 @@ export const Header = ({
                 </div>
               ) : (
                 <>
-                  {/* Área scrollable de productos, ahora más grande */}
                   <div className="flex-1 overflow-y-auto mt-1 space-y-1">
                     {cart.length === 0 ? (
-                      <p className="text-center text-gray-500 py-8">
-                        Tu carrito está vacío
-                      </p>
+                      <p className="text-center text-gray-500 py-8">Tu carrito está vacío</p>
                     ) : (
-                      <>
-                        {cart.map((item) => (
-                          <CartItem
-                            key={item.id}
-                            item={item}
-                            updateQuantity={updateQuantity}
-                            removeFromCart={removeFromCart}
-                          />
-                        ))}
-                      </>
+                      cart.map((item) => (
+                        <CartItem
+                          key={item.id}
+                          item={item}
+                          updateQuantity={updateQuantity}
+                          removeFromCart={removeFromCart}
+                        />
+                      ))
                     )}
                   </div>
+
                   <div className="border-t pt-3 space-y-2 bg-white">
                     <div className="flex justify-between items-center">
                       <span className="text-sm">Subtotal:</span>
-                      <span className="text-sm font-medium">
-                        ${subtotal.toLocaleString()}
-                      </span>
+                      <span className="text-sm font-medium">${subtotal.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-sm">Domicilio:</span>
-                      <span className="text-sm font-medium">
-                        ${deliveryCost.toLocaleString()}
-                      </span>
+                      <span className="text-sm font-medium">${deliveryCost.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between items-center border-t pt-2">
                       <span className="text-lg font-semibold">Total:</span>
@@ -195,7 +188,6 @@ export const Header = ({
                       onChange={(e) => {
                         const barrio = e.target.value;
                         setSelectedBarrio(barrio);
-
                         if (
                           barrio === "Recoger en el restaurante" ||
                           barrio === "Otro barrio a convenir con el cliente"
@@ -215,12 +207,8 @@ export const Header = ({
                           {b.barrio} ${b.tarifa.toLocaleString()}
                         </option>
                       ))}
-                      <option value="Recoger en el restaurante">
-                        Recoger en el restaurante
-                      </option>
-                      <option value="Otro barrio a convenir con el cliente">
-                        Otro barrio o zona
-                      </option>
+                      <option value="Recoger en el restaurante">Recoger en el restaurante</option>
+                      <option value="Otro barrio a convenir con el cliente">Otro barrio o zona</option>
                     </select>
 
                     {selectedBarrio &&
@@ -237,16 +225,21 @@ export const Header = ({
                         />
                       )}
 
-                    <div/>
                     <Button
                       onClick={handleWhatsAppOrder}
-                      className="w-full bg-green-500 text-white mt-2"
+                      disabled={!pedidosHabilitados}
+                      className={`w-full mt-2 text-white font-semibold transition 
+    ${pedidosHabilitados ? "bg-green-500 hover:bg-green-600" : "bg-gray-400 cursor-not-allowed"}`}
                     >
                       Finalizar pedido por WhatsApp
                     </Button>
+
+                    <div className="h-6 flex items-center justify-center text-xs text-gray-500 mt-2">
+                      
+                      .
+                    </div>
+
                   </div>
-                   <div className="h-10" />
-                  {/* Espacio para evitar que el botón de WhatsApp se superponga al contenido */}
                 </>
               )}
             </SheetContent>

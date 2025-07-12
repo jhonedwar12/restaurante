@@ -2,20 +2,62 @@ import { useState, useEffect } from "react";
 
 const InhabilitarPedidos = () => {
   const [habilitado, setHabilitado] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const ADMIN_TOKEN = "5964"; // Idealmente ponlo en .env o contexto
+
+  const obtenerEstado = () => {
+    fetch("https://api-restaurante-mwkh.onrender.com/api/pedidos-habilitados")
+      .then((res) => res.json())
+      .then((data) => {
+        setHabilitado(data.pedidosHabilitados);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error al obtener estado:", error);
+        setLoading(false);
+      });
+  };
 
   useEffect(() => {
-    const estadoGuardado = localStorage.getItem("pedidosHabilitados");
-    if (estadoGuardado !== null) {
-      setHabilitado(JSON.parse(estadoGuardado));
-    }
+    obtenerEstado(); // primera carga
   }, []);
 
   const handleToggle = () => {
-    setHabilitado((h) => {
-      localStorage.setItem("pedidosHabilitados", JSON.stringify(!h));
-      return !h;
-    });
+    const nuevoEstado = !habilitado;
+
+    fetch("https://api-restaurante-mwkh.onrender.com/api/pedidos-habilitados", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${ADMIN_TOKEN}`,
+      },
+      body: JSON.stringify({ habilitado: nuevoEstado }),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Fallo la autenticación o el servidor");
+        return res.json();
+      })
+      .then((data) => {
+        if (data.success) {
+          // En lugar de setHabilitado(nuevoEstado), volvemos a leer el estado real
+          obtenerEstado();
+        } else {
+          alert("Error al actualizar el estado");
+        }
+      })
+      .catch((error) => {
+        console.error("Error al cambiar estado:", error);
+        alert("Error: No tienes permisos o el servidor falló");
+      });
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <p className="text-lg font-medium">Cargando estado...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
