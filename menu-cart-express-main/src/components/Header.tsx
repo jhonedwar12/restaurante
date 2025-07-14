@@ -63,16 +63,21 @@ export const Header = ({
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          <Link to="/" className="flex items-center space-x-2">
-            <img
-              src={LOGO_URL}
-              alt="Logo Restaurante"
-              className="w-10 h-10 rounded-full object-cover"
-            />
-            <h1 className="text-xl font-bold text-gray-800">Restaurante Arroz master</h1>
-          </Link>
-        </div>
+        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+<div className="flex items-center space-x-2 sm:flex-row sm:space-x-2 sm:space-y-0 flex-col items-center space-y-2">
+  <Link to="/" className="flex items-center space-x-2 sm:space-x-2">
+    <img
+      src={LOGO_URL}
+      alt="Logo Restaurante"
+      className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
+    />
+    <h1 className="text-2xl sm:text-4xl font-extrabold uppercase text-neutral-800 drop-shadow-[2px_2px_2px_rgba(0,0,0,0.5)]">
+      Arroz Master
+    </h1>
+  </Link>
+</div>
+</div>
+
 
         <nav className="hidden md:flex items-center space-x-6">
           <Link

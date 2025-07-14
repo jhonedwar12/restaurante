@@ -32,14 +32,6 @@
     "category": "Entradas"
   },
   {
-    "id": 5,
-    "name": "Almuerzo del Día",
-    "price": 14000,
-    "image": "https://via.placeholder.com/300x200?text=Almuerzo",
-    "description": "Delicioso almuerzo con proteína, arroz y bebida.",
-    "category": "Platos personales"
-  },
-  {
     "id": 6,
     "name": "Promoción Arroz Paisa",
     "price": 13000,
@@ -49,10 +41,10 @@
   },
   {
     "id": 7,
-    "name": "Sopa del Día",
-    "price": 5000,
-    "image": "https://via.placeholder.com/300x200?text=Sopa",
-    "description": "Sopa casera tradicional para acompañar tus comidas.",
+    "name": "Porcion pollo frito",
+    "price": 7000,
+    "image": "https://via.placeholder.com/300x200?text=Pollo+Frito",
+    "description": "Porción: 1/4 de pollo frito crujiente.",
     "category": "Adiciones"
   },
   {
@@ -214,5 +206,12 @@
     "image": "photo-1618160702438-9b02ab6515c9",
     "description": "Pollo, cerdo, camarones, jamón ahumado, salteado en frescas verduras.",
     "category": "Platos personales"
+  },{
+    "id": 28,
+    "name": "Coca-cola",
+    "price": 7000,
+    "image": "https://via.placeholder.com/300x200?text=Coca-cola",
+    "description": "Bebida gaseosa clásica, ideal para acompañar tus comidas.",
+    "category": "Bebidas"
   }
 ]

@@ -191,26 +191,27 @@ const Index = ({ pedidosHabilitados }: IndexProps) => {
       <section
         className="relative py-20 px-4 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(rgba(255, 154, 53, 0.8), rgba(249, 175, 91, 0.38)), url('https://raw.githubusercontent.com/jhonedwar12/imagenes/main/fondo1.png')`,
+          backgroundImage: `linear-gradient(rgba(255, 144, 53, 0.11), rgba(249, 91, 91, 0.38)), url('https://raw.githubusercontent.com/jhonedwar12/imagenes/main/fondo1.png')`,
         }}
       >
-        <div className="container mx-auto text-center text-white">
-          <div className="w-12 h-12 mx-auto mb-4">
-            <img
-              src={LOGO_URL}
-              alt="Logo Restaurante"
-              className="w-12 h-12 rounded-full object-cover mx-auto"
-            />
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-lg">
-            Bienvenido a <span className="text-white">Arroz master</span>
-          </h1>
-          <p className="text-xl mb-8 max-w-2xl mx-auto drop-shadow-md">
-            Disfruta de nuestros platos frescos y deliciosos, preparados con amor e
-            ingredientes de la mejor calidad
-          </p>
-          <div className="w-24 h-1 bg-white mx-auto rounded-full"></div>
-        </div>
+     <div className="container mx-auto text-center py-4 px-2 sm:py-6 sm:px-4 rounded-lg shadow-lg max-w-xs sm:max-w-md md:max-w-xl lg:max-w-2xl" style={{ background: 'linear-gradient(to bottom, rgba(255, 144, 53, 0.66), rgba(249, 91, 91, 0.69))' }}>
+  <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 sm:mb-6 transform transition-transform duration-300 hover:rotate-12">
+    <img
+      src={LOGO_URL}
+      alt="Logo Restaurante" 
+      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover mx-auto shadow-lg border-2"  //text-2xl sm:text-4xl font-extrabold uppercase text-neutral-800 drop-shadow-[2px_2px_2px_rgba(0,0,0,0.5)]
+      style={{ borderColor: 'rgba(240, 111, 19, 1)' }}
+    />
+  </div>
+  <h1 className="text-2xl sm:text-3xl md:text-5xl font-['Playfair_Display'] font-bold mb-3 sm:mb-4 drop-shadow-2xl">
+    Bienvenido a <span className="text-2xl sm:text-4xl font-['Dancing_Script'] uppercase text-neutral-800 drop-shadow-[2px_2px_2px_rgba(0,0,0,0.5)]" style={{ color: 'rgb(255, 255, 255)' }}>Arroz Master</span>
+  </h1>
+  <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-md sm:max-w-2xl md:max-w-3xl mx-auto font-['Lora'] leading-relaxed drop-shadow-lg" style={{ color: 'rgba(255, 255, 255, 1)' }}>
+    Disfruta de nuestros platos frescos y deliciosos, preparados con amor e ingredientes de la mejor calidad
+  </p>
+  <div className="w-16 sm:w-24 h-1 mx-auto rounded-full transition-all duration-300 hover:w-20 sm:hover:w-32" style={{ backgroundColor: 'rgb(255, 255, 255)' }}></div>
+</div>
+
       </section>
 
       {/* Category Filter */}
