@@ -24,12 +24,13 @@ interface CartItemProps {
 export const CartItem = ({ item, updateQuantity, removeFromCart }: CartItemProps) => {
   return (
     <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
-      <img 
-        src={`https://images.unsplash.com/${item.image}`}
+      <img
+        src={item.image}
         alt={item.name}
-        className="w-12 h-12 object-cover rounded-md flex-shrink-0"
+        className="w-20 h-20 object-cover aspect-square rounded-lg flex-shrink-0 bg-gray-100"
       />
-      
+
+
       <div className="flex-1 min-w-0">
         <div className="flex justify-between items-start mb-2">
           <h4 className="font-medium text-sm text-gray-900 truncate pr-2">{item.name}</h4>
@@ -42,11 +43,11 @@ export const CartItem = ({ item, updateQuantity, removeFromCart }: CartItemProps
             <X className="h-3 w-3" />
           </Button>
         </div>
-        
+
         <p className="text-sm text-orange-600 font-semibold mb-2">
           ${item.price.toLocaleString()}
         </p>
-        
+
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Button
@@ -57,9 +58,9 @@ export const CartItem = ({ item, updateQuantity, removeFromCart }: CartItemProps
             >
               <Minus className="h-3 w-3" />
             </Button>
-            
+
             <span className="text-sm font-medium w-6 text-center">{item.quantity}</span>
-            
+
             <Button
               variant="outline"
               size="icon"
@@ -69,7 +70,7 @@ export const CartItem = ({ item, updateQuantity, removeFromCart }: CartItemProps
               <Plus className="h-3 w-3" />
             </Button>
           </div>
-          
+
           <div className="text-right">
             <p className="text-sm font-semibold text-gray-900">
               ${(item.price * item.quantity).toLocaleString()}
