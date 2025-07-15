@@ -23,17 +23,28 @@ interface CartItemProps {
 
 export const CartItem = ({ item, updateQuantity, removeFromCart }: CartItemProps) => {
   return (
-    <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+    <div
+      className="group flex items-start space-x-3 p-3 bg-gray-50 rounded-lg transition-transform duration-200 hover:scale-[1.02] active:scale-[1.03]"
+    >
       <img
         src={item.image}
         alt={item.name}
         className="w-20 h-20 object-cover aspect-square rounded-lg flex-shrink-0 bg-gray-100"
       />
 
-
       <div className="flex-1 min-w-0">
         <div className="flex justify-between items-start mb-2">
-          <h4 className="font-medium text-sm text-gray-900 truncate pr-2">{item.name}</h4>
+          <h4
+            className="
+              font-medium text-sm text-gray-900
+              truncate pr-2
+              group-hover:whitespace-normal group-hover:break-words group-hover:leading-snug group-hover:max-w-full
+              transition-all duration-200 ease-in-out
+            "
+          >
+            {item.name}
+          </h4>
+
           <Button
             variant="ghost"
             size="icon"
@@ -81,3 +92,5 @@ export const CartItem = ({ item, updateQuantity, removeFromCart }: CartItemProps
     </div>
   );
 };
+
+
