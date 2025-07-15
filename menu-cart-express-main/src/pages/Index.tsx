@@ -194,15 +194,16 @@ const Index = ({ pedidosHabilitados }: IndexProps) => {
           backgroundImage: `linear-gradient(rgba(255, 144, 53, 0.11), rgba(249, 91, 91, 0.38)), url('https://raw.githubusercontent.com/jhonedwar12/imagenes/main/fondo1.png')`,
         }}
       >
-     <div className="container mx-auto text-center py-4 px-2 sm:py-6 sm:px-4 rounded-lg shadow-lg max-w-xs sm:max-w-md md:max-w-xl lg:max-w-2xl" style={{ background: 'linear-gradient(to bottom, rgba(255, 144, 53, 0.66), rgba(249, 91, 91, 0.69))' }}>
-  <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 sm:mb-6 transform transition-transform duration-300 hover:rotate-12">
-    <img
-      src={LOGO_URL}
-      alt="Logo Restaurante" 
-      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover mx-auto shadow-lg border-2"  //text-2xl sm:text-4xl font-extrabold uppercase text-neutral-800 drop-shadow-[2px_2px_2px_rgba(0,0,0,0.5)]
-      style={{ borderColor: 'rgba(240, 111, 19, 1)' }}
-    />
-  </div>
+     <div className="container mx-auto text-center py-4 px-2 sm:py-6 sm:px-4 rounded-lg shadow-lg max-w-xs sm:max-w-md md:max-w-xl lg:max-w-2xl" style={{ background: 'linear-gradient(to bottom, rgba(255, 144, 53, 0.72), rgba(249, 91, 91, 0.77))' }}>
+ <div className="w-20 h-20 sm:w-28 sm:h-28 mx-auto mb-4 sm:mb-6 transform transition-transform duration-300 hover:rotate-12">
+  <img
+    src={LOGO_URL}
+    alt="Logo Restaurante"
+    className="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-4 transition-transform duration-300 hover:scale-110"
+    style={{ borderColor: 'rgba(240, 111, 19, 0)' }}
+  />
+</div>
+
   <h1 className="text-2xl sm:text-3xl md:text-5xl font-['Playfair_Display'] font-bold mb-3 sm:mb-4 drop-shadow-2xl">
     Bienvenido a <span className="text-2xl sm:text-4xl font-['Dancing_Script'] uppercase text-neutral-800 drop-shadow-[2px_2px_2px_rgba(0,0,0,0.5)]" style={{ color: 'rgb(255, 255, 255)' }}>Arroz Master</span>
   </h1>
@@ -252,13 +253,15 @@ const Index = ({ pedidosHabilitados }: IndexProps) => {
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12 px-4 mt-20">
         <div className="container mx-auto text-center">
-          <div className="w-12 h-12 mx-auto mb-4">
-            <img
-              src={LOGO_URL}
-              alt="Logo Restaurante"
-              className="w-12 h-12 rounded-full object-cover mx-auto"
-            />
-          </div>
+        <div className="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-4">
+  <img
+    src={LOGO_URL}
+    alt="Logo Restaurante"
+    className="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-4 transition-transform duration-300 hover:scale-110"
+    style={{ borderColor: 'rgba(240, 111, 19, 0)' }}
+  />
+</div>
+
           <h3 className="text-2xl font-bold mb-4">Restaurante Arroz master</h3>
           <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
             Comprometidos con ofrecerte la mejor experiencia gastronómica. Síguenos
