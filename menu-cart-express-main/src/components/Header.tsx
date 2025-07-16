@@ -116,7 +116,7 @@ export const Header = ({
                 <Menu className="h-4 w-4" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="flex flex-col min-h-screen p-4 pb-16 bg-[#fff9ec] text-gray-900 dark:bg-[#1c1c1f] dark:text-gray-100">
+            <SheetContent side="left" className="flex flex-col min-h-screen p-4 pb-16 bg-[#fff9ec] text-gray-900 dark:bg-[#1c1c1f] dark:text-white">
               <SheetHeader>
                 <SheetTitle>Navegación</SheetTitle>
               </SheetHeader>
