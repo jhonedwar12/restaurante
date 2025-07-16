@@ -171,8 +171,9 @@ const Index = ({ pedidosHabilitados }: IndexProps) => {
   }
 
   return (
-   <div className="min-h-screen bg-gradient-to-b from-[#fff9ec] to-[#ffe8c8] dark:bg-[#1c1c1f]"
-   >
+ <div className="min-h-screen bg-gradient-to-b from-[#ffe8c8] to-[#fff9ec] dark:from-[#1c1c1f] dark:to-[#1c1c12]">
+
+
 
 
       <Header
