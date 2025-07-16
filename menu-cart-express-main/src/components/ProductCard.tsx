@@ -60,7 +60,12 @@ export const ProductCard = ({ product, addToCart }: ProductCardProps) => {
   };
 
   return (
-   <Card className="overflow-hidden card-hover group cursor-pointer bg-white dark:bg-gradient-to-br dark:from-[#363738] dark:to-[#2a2b2c]">
+   <Card
+  className="overflow-hidden group cursor-pointer bg-white dark:bg-gradient-to-br dark:from-[#363738] dark:to-[#2a2b2c]
+             transition-transform duration-300 hover:scale-[1.02] active:scale-[1.01]
+             shadow-md hover:shadow-lg dark:shadow-[0_4px_20px_rgba(255,255,255,0.01)] dark:hover:shadow-[0_4px_25px_rgba(255,255,255,0.08)]"
+>
+
   <div className="aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">
     <picture>
       {displayedImage.endsWith(".webp") && (
