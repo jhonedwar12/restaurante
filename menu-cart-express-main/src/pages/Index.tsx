@@ -139,7 +139,7 @@ const Index = ({ pedidosHabilitados }: IndexProps) => {
 
     let message = "🖐️ ¡Hola! Me gustaría hacer el siguiente pedido:\n\n";
     cart.forEach((item) => {
-      message += `🍗 ${item.name} x${item.quantity} - 💵 $${(
+      message += `🍗 ${item.name} x *${item.quantity}* - 💵 $${(
         item.price * item.quantity
       ).toLocaleString()}\n`;
     });
@@ -150,7 +150,7 @@ const Index = ({ pedidosHabilitados }: IndexProps) => {
     message += `\n🛵 *Domicilio:* $${domicilio.toLocaleString()}`;
     message += `\n💲 *Total:* $${total.toLocaleString()}\n`;
     message += "¡Muchas gracias! 😁 \n\n";
-    message += "¡Recuerda, puedes pagar cuando te llegue en *efectivo* o transferir el total al siguiente Nequi: 3022685964 ! ";
+    message += "¡Recuerda, puedes pagar cuando recibas, en *efectivo* o transferir el total al siguiente Nequi: 3022685964 ! ";
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/573136752878?text=${encodedMessage}`;
@@ -162,7 +162,7 @@ const Index = ({ pedidosHabilitados }: IndexProps) => {
       <div className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 restaurant-gradient rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
-            <span className="text-white font-bold text-xl">R</span>
+            <span className="text-white font-bold text-xl">...</span>
           </div>
           <p className="text-gray-600">Cargando productos...</p>
         </div>
@@ -171,7 +171,7 @@ const Index = ({ pedidosHabilitados }: IndexProps) => {
   }
 
   return (
-   <div className="min-h-screen bg-white dark:bg-[linear-gradient(to_bottom_right,_rgb(15,15,18),_rgb(22,23,29))]"
+   <div className="min-h-screen bg-white dark:bg-[#1c1c1f]"
    >
 
 

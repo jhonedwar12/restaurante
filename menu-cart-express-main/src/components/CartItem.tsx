@@ -13,12 +13,12 @@ export const CartItem = ({ item, updateQuantity, removeFromCart }: CartItemProps
   const currentPrice = hasSizes && item.selectedSize ? item.price[item.selectedSize] : item.price;
 
   return (
-    <div className="group flex items-start space-x-3 p-3 bg-gray-50 dark:bg-[#1c1c1f] rounded-lg transition-transform duration-200 hover:scale-[1.02] active:scale-[1.03]">
+    <div className="group flex items-start space-x-3 p-3 bg-gray-50 dark:bg-[#2a2a2e] rounded-lg transition-transform duration-200 hover:scale-[1.02] active:scale-[1.03]">
       <picture>
         {item.image.endsWith(".webp") && (
           <source
             srcSet={`https://raw.githubusercontent.com/jhonedwar12/imagenes/main/${item.image}`}
-            type="image/webp"
+            type="image/webp" 
           />
         )}
         <img

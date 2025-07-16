@@ -43,7 +43,7 @@ export const ProductCard = ({ product, addToCart }: ProductCardProps) => {
     setTimeout(() => {
       setDisplayedImage(finalSrc);
       setLoaded(true);
-    }, 300); // puedes probar con 500 o 700 si quieres aún más suave
+    }, 200); // puedes probar con 500 o 700 si quieres aún más suave
   };
 }, [currentImage]);
 
