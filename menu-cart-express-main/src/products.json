@@ -11,7 +11,7 @@
     "id": 2,
     "name": "Arepas con carne desmechada",
     "price": 7000,
-    "image": "photo-1618160702438-9b02ab6515c9",
+    "image": "Arepa_Con_Desmechada.png",
     "description": "Arepitas rellenas con deliciosa carne desmechada.",
     "category": "Entradas"
   },
@@ -59,7 +59,7 @@
     "id": 9,
     "name": "Costillas en salsa BBQ oriental",
     "price": 17000,
-    "image": "https://via.placeholder.com/300x200?text=Costillas+BBQ",
+    "image": "costillas_bbq_plato.png",
     "description": "Servidas con arroz, papas a la francesa y bebida.",
     "category": "Platos personales"
   },
@@ -123,7 +123,7 @@
     "id": 17,
     "name": "Arroz Paisa",
     "price":   { "personal 2 personas": 20000, "mediano 4 personas": 40000, "familiar 6 personas": 50000 },
-    "image": "https://raw.githubusercontent.com/jhonedwar12/imagenes/main/imagenpaisa.jpg",
+    "image": "imagenpaisa.jpg",
     "description": "Chorizo, pollo, cerdo, salchicha, chicharrón, plátano maduro, maíz tierno.",
     "category": "Arroces"
   },
@@ -195,22 +195,27 @@
     "id": 26,
     "name": "Combo Valenciana",
     "price":  { "personal 2 personas": 20000, "mediano 4 personas": 40000, "familiar 6 personas": 50000 },
-    "image": "https://via.placeholder.com/300x200?text=Combo+Valenciana",
+    "image": "comb_valanciana.png",
     "description": "Arroz Paisa, pollo frito, papas a la francesa y gaseosa.",
     "category": "Combos"
   },
   {
     "id": 27,
     "name": "Chop Suey + Arroz",
-    "price":  { "personal 2 personas": 20000, "mediano 4 personas": 40000, "familiar 6 personas": 50000 },
-    "image": "photo-1618160702438-9b02ab6515c9",
+    "price": { "personal 2 personas": 20000, "mediano 4 personas": 40000, "familiar 6 personas": 50000 },
+    "images": {
+      "personal 2 personas": "comb_valanciana.png",
+      "mediano 4 personas": "Arepa_Con_Desmechada.png",
+      "familiar 6 personas": "chop-suey-familiar.jpg"
+    },
     "description": "Pollo, cerdo, camarones, jamón ahumado, salteado en frescas verduras.",
     "category": "Platos personales"
   },{
     "id": 28,
     "name": "Coca-cola",
-    "price": 7000,
-    "image": "https://via.placeholder.com/300x200?text=Coca-cola",
+    "price":  { "400ml": 4000, "1.5 l": 8500 },
+    "images": {"400ml": "comb_valanciana.png", "1.5 l": "Arepa_Con_Desmechada.png"},
+
     "description": "Bebida gaseosa clásica, ideal para acompañar tus comidas.",
     "category": "Bebidas"
   }

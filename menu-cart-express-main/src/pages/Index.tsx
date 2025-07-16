@@ -171,7 +171,10 @@ const Index = ({ pedidosHabilitados }: IndexProps) => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50">
+   <div className="min-h-screen bg-white dark:bg-[linear-gradient(to_bottom_right,_rgb(15,15,18),_rgb(22,23,29))]"
+   >
+
+
       <Header
         cart={cart}
         updateQuantity={updateQuantity}

@@ -2,14 +2,22 @@
 import { useState, useEffect } from 'react';
 import productsData from '../products.json';
 
-interface Product {
+// src/types/product.ts
+export interface Product {
   id: number;
   name: string;
-  price: number;
+  price: number | { [size: string]: number };
   image: string;
+  images?: { [size: string]: string };
   description: string;
   category: string;
 }
+
+export interface CartProduct extends Product {
+  quantity: number;
+  selectedSize?: string;
+}
+
 
 export const useProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);

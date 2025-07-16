@@ -92,10 +92,12 @@
   body {
     @apply bg-gradient-to-br from-orange-50 to-amber-50 text-gray-800;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
   }
 
   .restaurant-gradient {
-    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    background: linear-gradient(135deg, #ffd035c7 0%, #f61818aa 100%);
   }
 
   .card-hover {
