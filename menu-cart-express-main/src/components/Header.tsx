@@ -155,7 +155,7 @@ export const Header = ({
               </Button>
             </SheetTrigger>
 
-            <SheetContent className="flex flex-col min-h-screen p-4 pb-16 bg-white text-gray-900 dark:bg-[#1c1c1f] dark:text-gray-100">
+            <SheetContent className="flex flex-col min-h-screen p-4 pb-16 bg-[#fff9ec] text-gray-900 dark:bg-[#1c1c1f] dark:text-gray-100">
               {!pedidosHabilitados ? (
                 <div className="flex-1 flex items-center justify-center">
                   <p className="text-center text-lg text-red-600 dark:text-red-400 font-semibold">
@@ -164,14 +164,14 @@ export const Header = ({
                 </div>
               ) : cart.length === 0 ? (
                 <div className="flex-1 flex items-center justify-center">
-                  <p className="text-center text-lg text-red-600 dark:text-red-400 font-semibold">
+                  <p className="text-center text-lg #000000 dark:text-red-400 font-semibold">
                     El carrito está vacío
                   </p>
                 </div>
               ) : (
                 <>
                   <SheetHeader>
-                    <SheetTitle className="text-center text-gray-500 dark:text-amber-400 py-2">
+                    <SheetTitle className="text-center #000000 dark:text-amber-400 py-2">
                       Carrito de Compras
                     </SheetTitle>
                     <SheetDescription>Revisa tu pedido antes de continuar</SheetDescription>
@@ -188,7 +188,7 @@ export const Header = ({
                     ))}
                   </div>
 
-                  <div className="border-t pt-3 space-y-2 bg-white dark:bg-[#1c1c1f]">
+                  <div className="border-t pt-3 space-y-2 bg-[#fff9ec] dark:bg-[#1c1c1f]">
                     <div className="flex justify-between items-center">
                       <span className="text-sm">Subtotal:</span>
                       <span className="text-sm font-medium">${subtotal.toLocaleString()}</span>
