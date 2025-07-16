@@ -116,27 +116,37 @@ export const Header = ({
                 <Menu className="h-4 w-4" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="flex flex-col min-h-screen p-4 pb-16 bg-[#fff9ec] text-gray-900 dark:bg-[#1c1c1f] dark:text-white">
+            <SheetContent
+              side="left"
+              className="flex flex-col min-h-screen p-4 pb-16 bg-[#fff9ec] text-gray-900 dark:bg-[#1c1c1f] dark:text-white"
+            >
               <SheetHeader>
-                <SheetTitle>Navegación</SheetTitle>
+                <SheetTitle className="text-black dark:text-white text-xl font-bold">Navegación</SheetTitle>
               </SheetHeader>
+
               <div className="mt-6 space-y-4">
                 <Link
                   to="/"
-                  className={`block text-lg font-medium hover:text-orange-600 ${location.pathname === "/" ? "text-orange-600" : "text-gray-700"
-                    }`}
+                  className={`block text-lg font-medium transition-colors duration-200
+        ${location.pathname === "/"
+                      ? "text-orange-600 dark:text-orange-400"
+                      : "text-gray-700 dark:text-orange-300 hover:text-orange-600 dark:hover:text-orange-400"}`}
                 >
                   Menú
                 </Link>
+
                 <Link
                   to="/sobre-nosotros"
-                  className={`block text-lg font-medium hover:text-orange-600 ${location.pathname === "/sobre-nosotros" ? "text-orange-600" : "text-gray-700"
-                    }`}
+                  className={`block text-lg font-medium transition-colors duration-200
+        ${location.pathname === "/sobre-nosotros"
+                      ? "text-orange-600 dark:text-orange-400"
+                      : "text-gray-700 dark:text-orange-300 hover:text-orange-600 dark:hover:text-orange-400"}`}
                 >
                   Sobre Nosotros
                 </Link>
               </div>
             </SheetContent>
+
           </Sheet>
 
           {/* Carrito */}
