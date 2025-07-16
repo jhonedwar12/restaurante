@@ -31,7 +31,8 @@ export const useProducts = () => {
     }, 100);
   }, []);
 
-  const categories = ["Todos", ...Array.from(new Set(products.map(product => product.category)))];
+const categories = Array.from(new Set(products.map(product => product.category)));
+
 
   return {
     products,

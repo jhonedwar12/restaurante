@@ -141,115 +141,116 @@ export const Header = ({
               </Button>
             </SheetTrigger>
 
-            <SheetContent className="flex flex-col min-h-screen p-4 pb-16">
-              <SheetHeader>
-                <SheetTitle>Carrito de Compras</SheetTitle>
-                <SheetDescription>Revisa tu pedido antes de continuar</SheetDescription>
-              </SheetHeader>
+         <SheetContent className="flex flex-col min-h-screen p-4 pb-16 bg-white text-gray-900 dark:bg-[#1c1c1f] dark:text-gray-100">
 
-              {!pedidosHabilitados ? (
-                <div className="flex-1 flex items-center justify-center">
-                  <p className="text-center text-lg text-red-600 font-semibold">
-                    No tenemos servicio en este momento
-                  </p>
-                </div>
-              ) : (
-                <>
-                  <div className="flex-1 overflow-y-auto mt-1 space-y-1">
-                    {cart.length === 0 ? (
-                      <p className="text-center text-gray-500 py-8">Tu carrito está vacío</p>
-                    ) : (
-                      cart.map((item) => (
-                        <CartItem
-                          key={item.id}
-                          item={item}
-                          updateQuantity={updateQuantity}
-                          removeFromCart={removeFromCart}
-                        />
-                      ))
-                    )}
-                  </div>
+  <SheetHeader>
+    <SheetTitle className="text-center text-gray-500 dark:text-amber-400 py-8">Carrito de Compras</SheetTitle>
+    <SheetDescription>Revisa tu pedido antes de continuar</SheetDescription>
+  </SheetHeader>
 
-                  <div className="border-t pt-3 space-y-2 bg-white">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm">Subtotal:</span>
-                      <span className="text-sm font-medium">${subtotal.toLocaleString()}</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm">Domicilio:</span>
-                      <span className="text-sm font-medium">${deliveryCost.toLocaleString()}</span>
-                    </div>
-                    <div className="flex justify-between items-center border-t pt-2">
-                      <span className="text-lg font-semibold">Total:</span>
-                      <span className="text-xl font-bold text-orange-600">
-                        ${totalPrice.toLocaleString()}
-                      </span>
-                    </div>
+  {!pedidosHabilitados ? (
+    <div className="flex-1 flex items-center justify-center">
+      <p className="text-center text-lg text-red-600 dark:text-red-400 font-semibold">
+        No tenemos servicio en este momento
+      </p>
+    </div>
+  ) : (
+    <>
+      <div className="flex-1 overflow-y-auto mt-1 space-y-1">
+        {cart.length === 0 ? (
+          <p className="text-center text-gray-500 dark:text-gray-100 py-8">Tu carrito está vacío</p>
+        ) : (
+          cart.map((item) => (
+            <CartItem
+              key={item.id}
+              item={item}
+              updateQuantity={updateQuantity}
+              removeFromCart={removeFromCart}
+            />
+          ))
+        )}
+      </div>
 
-                    <label htmlFor="barrio" className="font-semibold mb-1 block">
-                      Selecciona dónde quieres tu pedido:
-                    </label>
-                    <select
-                      id="barrio"
-                      value={selectedBarrio}
-                      onChange={(e) => {
-                        const barrio = e.target.value;
-                        setSelectedBarrio(barrio);
-                        if (
-                          barrio === "Recoger en el restaurante" ||
-                          barrio === "Otro barrio a convenir con el cliente"
-                        ) {
-                          setDomicilio(0);
-                        } else {
-                          const tarifa =
-                            domis.find((b) => b.barrio === barrio)?.tarifa || 0;
-                          setDomicilio(tarifa);
-                        }
-                      }}
-                      className="border rounded px-3 py-2 w-full mb-1"
-                    >
-                      <option value="">Seleccionar</option>
-                      {domis.map((b) => (
-                        <option key={b.barrio} value={b.barrio}>
-                          {b.barrio} ${b.tarifa.toLocaleString()}
-                        </option>
-                      ))}
-                      <option value="Recoger en el restaurante">Recoger en el restaurante</option>
-                      <option value="Otro barrio a convenir con el cliente">Otro barrio o zona</option>
-                    </select>
+      <div className="border-t pt-3 space-y-2 bg-white dark:bg-[#1c1c1f]">
+        <div className="flex justify-between items-center">
+          <span className="text-sm">Subtotal:</span>
+          <span className="text-sm font-medium">${subtotal.toLocaleString()}</span>
+        </div>
+        <div className="flex justify-between items-center dark:bg-[#1c1c1f]">
+          <span className="text-sm">Domicilio:</span>
+          <span className="text-sm font-medium">${deliveryCost.toLocaleString()}</span>
+        </div>
+        <div className="flex justify-between items-center border-t pt-2 dark:bg-[#1c1c1f]">
+          <span className="text-lg font-semibold">Total:</span>
+          <span className="text-xl font-bold text-orange-600 dark:text-orange-400">
+            ${totalPrice.toLocaleString()}
+          </span>
+        </div>
 
-                    {selectedBarrio &&
-                      selectedBarrio !== "Recoger en el restaurante" &&
-                      selectedBarrio !== "Otro barrio a convenir con el cliente" && (
-                        <input
-                          id="direccion"
-                          type="text"
-                          value={direccion}
-                          onChange={(e) => setDireccion(e.target.value)}
-                          className="border rounded px-3 py-2 w-full mb-1"
-                          placeholder="Escribe tu dirección aquí..."
-                          required
-                        />
-                      )}
+        <label htmlFor="barrio" className="font-semibold mb-1 block dark:bg-[#1c1c1f]">
+          Selecciona dónde quieres tu pedido:
+        </label>
+        <select
+          id="barrio"
+          value={selectedBarrio}
+          onChange={(e) => {
+            const barrio = e.target.value;
+            setSelectedBarrio(barrio);
+            if (
+              barrio === "Recoger en el restaurante" ||
+              barrio === "Otro barrio a convenir con el cliente"
+            ) {
+              setDomicilio(0);
+            } else {
+              const tarifa = domis.find((b) => b.barrio === barrio)?.tarifa || 0;
+              setDomicilio(tarifa);
+            }
+          }}
+          className="border rounded px-3 py-2 w-full mb-1 bg-white dark:bg-[#1c1c1f] dark:border-gray-600 dark:text-gray-100"
+        >
+          <option value="">Seleccionar</option>
+          {domis.map((b) => (
+            <option key={b.barrio} value={b.barrio}>
+              {b.barrio} ${b.tarifa.toLocaleString()}
+            </option>
+          ))}
+          <option value="Recoger en el restaurante">Recoger en el restaurante</option>
+          <option value="Otro barrio a convenir con el cliente">Otro barrio o zona</option>
+        </select>
 
-                    <Button
-                      onClick={handleWhatsAppOrder}
-                      disabled={!pedidosHabilitados}
-                      className={`w-full mt-2 text-white font-semibold transition 
-    ${pedidosHabilitados ? "bg-green-500 hover:bg-green-600" : "bg-gray-400 cursor-not-allowed"}`}
-                    >
-                      Finalizar pedido por WhatsApp
-                    </Button>
+        {selectedBarrio &&
+          selectedBarrio !== "Recoger en el restaurante" &&
+          selectedBarrio !== "Otro barrio a convenir con el cliente" && (
+            <input
+              id="direccion"
+              type="text"
+              value={direccion}
+              onChange={(e) => setDireccion(e.target.value)}
+              className="border rounded px-3 py-2 w-full mb-1 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100"
+              placeholder="Escribe tu dirección aquí..."
+              required
+            />
+          )}
 
-                    <div className="h-6 flex items-center justify-center text-xs text-gray-500 mt-2">
-                      
-                      .
-                    </div>
+        <Button
+          onClick={handleWhatsAppOrder}
+          disabled={!pedidosHabilitados}
+          className={`w-full mt-2 text-white font-semibold transition 
+            ${pedidosHabilitados
+              ? "bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700"
+              : "bg-gray-400 dark:bg-gray-700 cursor-not-allowed"}`}
+        >
+          Finalizar pedido por WhatsApp
+        </Button>
 
-                  </div>
-                </>
-              )}
-            </SheetContent>
+        <div className="h-5 flex items-center justify-center text-xs text-gray-500 dark:text-gray-400 mt-2">
+          .
+        </div>
+      </div>
+    </>
+  )}
+</SheetContent>
+
           </Sheet>
         </div>
       </div>

@@ -26,7 +26,7 @@ interface IndexProps {
 
 const Index = ({ pedidosHabilitados }: IndexProps) => {
   const [cart, setCart] = useState<CartProduct[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState("Todos");
+  const [selectedCategory, setSelectedCategory] = useState("Entradas");
   const [selectedBarrio, setSelectedBarrio] = useState("");
   const [domicilio, setDomicilio] = useState(0);
   const [direccion, setDireccion] = useState("");
@@ -34,11 +34,11 @@ const Index = ({ pedidosHabilitados }: IndexProps) => {
   const { products, categories, loading } = useProducts();
   const { domis } = useDomis();
 
-  const filteredProducts =
-    selectedCategory === "Todos"
-      ? products
-      : products.filter((product) => product.category === selectedCategory);
-
+ 
+  const filteredProducts = selectedCategory === "Todos"
+    ? products
+    : products.filter((product) => product.category === selectedCategory);
+    
   const addToCart = (product: Product, size?: string) => {
     let price = product.price;
     let name = product.name;

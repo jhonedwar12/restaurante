@@ -82,9 +82,6 @@ export const ProductCard = ({ product, addToCart }: ProductCardProps) => {
       <h3 className="text-lg font-semibold break-words text-gray-900 dark:text-white">
         {product.name}
       </h3>
-      <Badge variant="secondary" className="text-xs">
-        {product.category}
-      </Badge>
     </div>
 
     <p className="text-gray-600 text-sm mb-3 break-words dark:text-gray-300">
